@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Rubí Hermosa 🦇💖</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Caveat:wght@600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --pastel-bg: #ffe6ea; /* Fondo rosa pastel muy suave */
+            --dark-accent: #2d1b2e; /* Morado/Negro muy oscuro para contrastar */
+            --pink-accent: #ff9aab; /* Rosa chicle para detalles */
+        }
+
+        body {
+            background-color: var(--pastel-bg);
+            color: var(--dark-accent);
+            font-family: 'Quicksand', sans-serif;
+            overflow-y: auto;
+            overflow-x: hidden;
+            /* Patrón sutil de fondo */
+            background-image: 
+                radial-gradient(var(--pink-accent) 1px, transparent 1px),
+                radial-gradient(var(--pink-accent) 1px, transparent 1px);
+            background-position: 0 0, 25px 25px;
+            background-size: 50px 50px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .goth-font {
+            font-family: 'Cinzel Decorative', cursive;
+        }
+
+        .handwriting {
+            font-family: 'Caveat', cursive;
+            font-size: 2.2rem;
+            line-height: 1.5;
+        }
+
+        .kawaii-text {
+            color: var(--dark-accent);
+            text-shadow: 2px 2px 0px var(--pink-accent);
+        }
+
+        .magic-btn {
+            background: var(--dark-accent);
+            color: var(--pastel-bg);
+            border: 3px solid var(--dark-accent);
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 50;
+            position: relative;
+            box-shadow: 5px 5px 0px var(--pink-accent); /* Sombra tipo retro/kawaii */
+        }
+
+        .magic-btn:hover {
+            background: var(--pink-accent);
+            color: var(--dark-accent);
+            box-shadow: 5px 5px 0px var(--dark-accent);
+            transform: translate(-2px, -2px);
+        }
+
+        #start-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: opacity 1.5s ease, visibility 1.5s;
+        }
+
+        #message-screen {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+            max-width: 650px;
+            transition: opacity 2s ease;
+        }
+
+        .heartbeat {
+            animation: heartbeat 2s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            50% { transform: scale(1.2) rotate(5deg); }
+            75% { transform: scale(1.1) rotate(-5deg); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .cute-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 3px solid var(--dark-accent);
+            border-radius: 20px;
+            box-shadow: 8px 8px 0px var(--pink-accent);
+            position: relative;
+        }
+        
+        /* Detalles de las esquinas */
+        .cute-card::before, .cute-card::after {
+            content: '🦇';
+            position: absolute;
+            font-size: 1.5rem;
+            top: -15px;
+            background: var(--pastel-bg);
+            border-radius: 50%;
+            padding: 5px;
+            border: 2px solid var(--dark-accent);
+        }
+        .cute-card::before { left: -15px; }
+        .cute-card::after { right: -15px; transform: scaleX(-1); }
+
+        /* Estilo Polaroid para la Galería de Fotos */
+        .polaroid-frame {
+            background: #ffffff;
+            padding: 12px 12px 20px 12px;
+            border: 3px solid var(--dark-accent);
+            box-shadow: 5px 5px 0px var(--pink-accent);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        .polaroid-frame:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            box-shadow: 8px 8px 0px var(--dark-accent);
+            z-index: 10;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Contenedor invisible para YouTube Iframe (Muse - Exogenesis Part 3) -->
+    <div id="player" class="hidden" style="display:none;"></div>
+
+    <!-- Pantalla de Inicio -->
+    <div id="start-screen" class="px-4">
+        <div class="text-7xl mb-4 heartbeat">🎁</div>
+        <h1 class="goth-font text-4xl md:text-5xl mb-8 kawaii-text">Tengo un regalo para ti, mi Rubí...</h1>
+        <button class="magic-btn goth-font font-bold" onclick="startSurprise()">Abrir sorpresa 🎀</button>
+        <p class="mt-6 text-sm opacity-80 font-bold" style="color: var(--dark-accent);">(Sube el volumen 🎵)</p>
+    </div>
+
+    <!-- Pantalla del Mensaje -->
+    <div id="message-screen" class="my-auto">
+        <h2 class="goth-font text-4xl md:text-6xl mb-6 kawaii-text fade-in-up" style="animation-delay: 0.5s;">Te Amo, Rubí 💖</h2>
+        
+        <!-- Galería de Fotos Polaroid -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 fade-in-up" style="animation-delay: 1s;">
+            <div class="polaroid-frame -rotate-3">
+                <img src="https://placehold.co/400x400/2d1b2e/ff9aab?text=Tu+Foto+1" alt="Nuestra foto 1" class="w-full h-40 sm:h-48 object-cover rounded-lg border-2 border-slate-900">
+                <p class="handwriting text-center mt-2" style="font-size: 1.4rem;">Donde empezó todo ✨</p>
+            </div>
+            <div class="polaroid-frame rotate-2">
+                <img src="https://placehold.co/400x400/2d1b2e/ff9aab?text=Tu+Foto+2" alt="Nuestra foto 2" class="w-full h-40 sm:h-48 object-cover rounded-lg border-2 border-slate-900">
+                <p class="handwriting text-center mt-2" style="font-size: 1.4rem;">Mi momento favorito 🖤</p>
+            </div>
+            <div class="polaroid-frame -rotate-2">
+                <img src="https://placehold.co/400x400/2d1b2e/ff9aab?text=Tu+Foto+3" alt="Nuestra foto 3" class="w-full h-40 sm:h-48 object-cover rounded-lg border-2 border-slate-900">
+                <p class="handwriting text-center mt-2" style="font-size: 1.4rem;">Juntos por siempre 🎀</p>
+            </div>
+        </div>
+
+        <div class="cute-card p-8 md:p-10 fade-in-up" style="animation-delay: 1.5s;">
+            <p class="handwriting text-left">
+                Mi Rubí hermosa, 🎀<br><br>
+                Quería hacerte este pequeño detalle sorpresa solo para recordarte lo mucho que me importas.<br><br>
+                Amo perderme en tus ojitos hermosos, amo tu estilo, tu esencia y todo lo que compartimos. Eres mi persona favorita y la magia más bonita de mis días.<br><br>
+                Agradezco con todo mi corazón todo el amor y el esfuerzo enorme que haces todos los días por nuestros niños, eres una mamá increíble y te admiro muchísimo.<br><br>
+                Gracias por aguantarme todos los días y ser mi compañera de vida. 🖤<br><br>
+                <span class="block text-right mt-4">Con todo mi amor,<br><strong>Tu esposo, Lauro.</strong> 🖤</span>
+            </p>
+        </div>
+        
+        <div class="mt-8 text-4xl fade-in-up flex justify-center gap-4" style="animation-delay: 2.5s;">
+            <span>✨</span><span>🎀</span><span>🖤</span><span>🎀</span><span>✨</span>
+        </div>
+    </div>
+
+    <!-- YouTube API para la música -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player;
+        
+        // ID de YouTube para Muse - Exogenesis Part 3
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                videoId: 'xMFCws07x90', // Exogenesis Part 3
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0,
+                    'showinfo': 0,
+                    'rel': 0,
+                }
+            });
+        }
+
+        // Función que se ejecuta al presionar el botón
+        function startSurprise() {
+            // 1. Ocultar la pantalla inicial suavemente
+            const startScreen = document.getElementById('start-screen');
+            startScreen.style.opacity = '0';
+            
+            // 2. Iniciar la música
+            if (player && typeof player.playVideo === 'function') {
+                player.playVideo();
+            }
+
+            // 3. Mostrar el mensaje después de que se desvanece el inicio
+            setTimeout(() => {
+                startScreen.style.display = 'none';
+                
+                const messageScreen = document.getElementById('message-screen');
+                messageScreen.style.visibility = 'visible';
+                messageScreen.style.opacity = '1';
+                
+            }, 1500); // Espera 1.5 segundos a que la animación de desvanecer termine
+        }
+    </script>
+</body>
+</html>
